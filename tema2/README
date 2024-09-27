@@ -1,0 +1,157 @@
+Problema my_octave: //Copyright Tunsoiu Dan-Andrei 315CA 2022-2023
+
+	Problema este formata din functia main si din 24 de alte functii. Mainul 
+contine urmatoarele variabile: ***mat, care va fi un vector de matrici, *dimmat,
+care va retine dimensiunea fiecarei matrici in parte, nrmat, care retine numarul
+total de matrici, ok, care va fi folosit pentru a afla daca comanda citita este
+una valida, toate cele prezentate anterior sunt de tipul int, si o variabila de 
+tipul char care va retine litera corespunzatoare comenzii date. Mai intai o sa 
+ii dam variabilei nrmat valoarea 0 pt ca original avem 0 matrici citite si apoi
+o sa avem un while care va citi valoarea variabilei c, apoi va citi enterul, 
+dupa care va face ok-ul egal cu 0. Pe urma verificam ce comanda am primit cu 
+ajutorul mai multor if-uri si apelam subprogramul corespunzator acesteia, facem
+ok-ul egal cu 0 si daca in subprogramul respectiv avem variabile de citit o sa
+fie apelata din nou functia getchar pentru a citi ultimul endline. Daca litera 
+primita nu corespunde niciuneia dintre comenzi atunci afisam "Unrecognized 
+command". Daca litera primita este Q atunci apelam functia de eliberare a 
+resurselor in uz si iesim din while.
+
+	Functia citire primeste ca parametri adresa pointerului mat, adresa pointe-
+rului dimmat si adresa variabilei nrmat. Aceasta are doua variabile declarate ca
+int local, n si m. Ea citeste valorile lui n si m si daca nrmat este egal cu 0
+atunci alocam dinamic memorie pt mat altfel realocam dinami memorie pt mat, in 
+ambele cazuri fiind egala cu valoarea lui nrmat ori sizeof(int **). Dupa aceea
+o sa alucam dinamic memorie pentru linia lui mat de (nrmat - 1) si apoi pt 
+fiecare locatie din vector alocam dinamic memoria pentru coloanele lui mat de
+(nrmat - 1). Astfel ne-am creat matricea in vectorul de matrici mat si ramane 
+doar de citit valorile lui mat de (nrmat - 1) si facut modulo 10007. Apoi alocam
+dinamic memorie vectorului dimmat egala ca dublul nr de matrici ori sizeof(int)
+pentru ca ne trebuiesc doua casute pentru fiecare matrice, una pentru numarul de
+linii si una pentru numarul de coloane.
+
+	Functia eliberareaux primeste ca parametru adresa de memorie a inceputului 
+unei matrici si dimensiunile acesteia si elibereaza din memorie matricea.
+
+	Functia eliberaretot primeste ca parametru adresa de memorie a pointerului
+mat, adresa de memorie a pointerului dimmat si variabila nrmat, aceasta elibe-
+rand una cate una toate matricile din vectorul mat si apoi eliberand vectorul
+dimmat.
+
+	Functi dimensiune primeste ca parametru vectorul dimmat si variabila nrmat
+si contine o variabila declarata local n. Aceasta citeste n-ul si mai intai 
+verifica daca n-ul este un coeficient valid al unei matrici din mat si apoi
+afiseaza dimensiunile matricei respective.
+
+	Functia redimensionare primeste ca parametru adresa de memorie a vectorului 
+mat, adresa de memorie a vectorului dimmat si variabila nrmat. Ea contine 5 
+variabile declarate local, a, care este coeficientul matricei pe care vrem sa
+o redimensionam, n si m care sunt numarul de linii, respectiv coloane dupa care
+se face redimensionarea, vectorii lin si col, care retin linile, respectiv 
+colaenlor, dupa care se face redimensionarea si aux ca re va fi o matrice 
+auxiliara folosita in operatia de redimensionare. Ea functioneaza in felul urma-
+tor: mai intai citim a, apoi n, apoi alocam dinamic vectorul lin si citim 
+valorile acestuia, apoi citim m, alocam dinamic vectorul col si citim valorile 
+acestuia. In pasul urmator verificam daca indicele citit este unul valid si daca
+este o sa alocam dinamic matricea auxiliara aux care va avea aceleasi dimensiuni
+ca matricea pe care vrem sa o redimensionam, putand astfel copia valoare cu 
+valoare din matricea cu indicele a in aux. Apoi o sa eliberam coloanele matricei
+cu indicele a si o sa realocam numarul de linii a acesteia, in acest proces
+alocand dinamic si coloanele respectivei matrici. Dupa aceea o sa citim valorile
+care ne trebuie din aux si o sa le copiem in matricea cu indicele a. Apoi o sa
+schimba valorile dimensiunii acesteia din vectorul dimmat cu valorile noi. In
+ultimul pas ne ramane doar sa dealocam matricea aux si respectiv vectorii lin
+si col.
+
+	Functia modulo primeste ca parametru variabila a si intoarce valoarea 
+acestuia modulo 10007 indiferent daca el era pozitiv sau negativ.
+
+	Functia inmultirematr primeste o matrice a, o matrice b, adresa de memorie
+a matricei c, numarul de linii a matricei a care este egal cu x, numarul de 
+cloane a matricei a care este egal cu numarul de linii a matricei b si este 
+egal cu y, si numarul de coloane a matricei b care este egal cu z. Aceasta face
+inmultirea clasica dintre matricea a si matricea b, rezultantul fiind pus in
+matricea c.
+
+	Functia inmultireclasic primeste ca parametrii adresa de memorie a vectoru-
+lui mat, adresa de memorie a vectorului dimmat si adresa de memorie a variabilei
+nrmat. Aceasta contine 6 variabile declarate local, n si m sunt coeficientii
+matricilor pe care vrem sa le inmultim, aux2 este o variabila folosita pentru 
+alocarea dinamica a cloanelor lui mat de (nrmat - 1), aux1 are un scop asemanator
+dar e folosita pentru declararea dinamica a numarului de linii si x, y, z care
+au fost explicate in functia de mai sus. Aceasta verifica mai inati daca coefi-
+cientii primiti sunt valizi, apoi verifica daca inmultirea celor doua matrici 
+este posibila iar apoi aloca dinamic noua matrice in care vom tine minte rezul-
+tatul inmultirii si realoca vectorul dimmat astfel incat sa putem trece dimen-
+siunile noii matrici si dupa aceea se face inmultirea propriuzisa prin apelarea
+functiei inmultiremat.
+
+	Functia swap primeste trei parametri, adresa de memorie a unui vector si 
+doua variabile care reprezinta indicii valorilor din vector care vor sa fie in-
+terschimbate. Functia face interschimbarea acestora.
+
+	Functia sortare primeste ca parametri adresa de memorie a vectorului mat,
+adresa de memorie a vectorului dimmat si valoarea variabilei nrmat. Aceasta
+contine trei variabile locale s, care va fi vectorul de sume de matrice, ok care
+va fi folosit mai tarziu in sortare si aux care va fi tot folosit mai tarziu in
+sortare. Astfel mai intai alocam dinamic vectorul s, apoi face suma fiecarei 
+matrici si apoi o sa facem un bublesort pentru a sorta matricile dupa suma.
+In final va trebui sa eliberam vectorul s.
+
+	Functia transpunere este asemanatoare celei de redimensionare cu exceptia 
+faptului ca nu mai suntem nevoiti sa citim linile si coloanele dupa care se 
+face redimensionarea. Algoritmul de baza ramane acelasi.
+
+	Functia alocareaux primeste trei parametri, adresa de memorie a matricei 
+aux, si dimensiunile acesteia reprezentate prin n si m. Aceasta face alocarea
+dinamica a matricei aux.
+
+	Functia ridicare la putere primeste trei parametri, adresa de memorie a
+vectorului mat, vectorul dimmat si valoarea variabilei nrmat. Aceasta contine
+7 variabile locale, acestea fiind: n, care reprezinta indexul matrici ridicate
+la putere, p care reprezinta puterea, aux1 si aux2 sunt doua matrici auxiliare,
+baza2 este un vector auxiliar, nr care este o variabila de tip int care va fi 
+folosita mai tarziu si x care va fi egal cu dimensiunea matricei ridicate la
+putere. Mai intai verificam daca indicele primit este corect, apoi daca puterea
+este pozitiva si apoi daca matricea in sine este patratica. Daca puterea este
+egala cu 1 atunci o sa iesim din functie pentru ca nu mai trebuie sa facem nimic
+din moment ce x la 1 este tot egal cu x-ul initial fara calcule.Apoi o sa alocam 
+dinamic aux1 si aux2, aux1 va retine matrice initiala pe care vrem sa o ridicam
+la putere iar aux2 va retine valoarea actuala a ridicari la putere a matricei 
+initiale care initial va fi egala cu In. Apoi facem matricea initiala cu In care
+este egal cu matricea initiala la puterea 0. Apoi o sa transformam puterea p
+in baza 2 si o sa retinem numarul de "biti" in nr si "biti" in sine in vectorul
+alocat dinami baza2. Dupa aceea o sa citim vectorul baza2 de la coada spre ince-
+put si o sa ridicam matricea aux2 la patrat pentru fiecare valoarea din baza2.
+Daca baza2 de i este egala cu 0 atunci nu mai trebuie sa facem alte calcule si
+trecem la baza2 de i+1, altfel, daca este egala cu 1 trebuie sa mai inmultim
+odata aux2 cu aux1. Dupa ce iesim din for o sa eliberam resursele folosite
+matricea de indice a devenind egala cu aux2.
+
+	Functia eliberareomat primeste trei parametri, adresa de memorie a vectoru-
+lui mat, adresa de memorie a vectorului dimmat si adresa de memorie a variabilei
+nrmat. Acesta contine o singura variabila locala n care retine indicele
+matricei care trebuie eliminata. Mai intai verificam daca este un indice valid
+si apoi o sa eliberam din memorie matricea cu indicele respectiv, dupa care o
+sa permutam atat valorile din mat cat si cele din dimmat la stanga.
+
+	Urmatoarele sapte functii sunt folosite pentru calcularea celor sapte ma-
+trici auxiliare necesare la strassen astfel: primesc ca parametru matricile
+a si b care trebuiesc inmultite, adresele de memorie a matricilor aux1 si aux2
+si dimensiunea x a acestora. Ele calculeaza valorile lui aux1 si aux2 care re-
+prezinta matricea de la stanga inmultiri din calcularea Mx si matricea de la
+dreapta inmultirii.
+
+	Strasen are 4 parametri, matricile a si b care sunt inmultite, matricea c 
+care trebuie sa fie rezultatul inmultirii si x care este dimensiunea. Functia 
+are 6 variabile locale, maux care este un vector de 7 matrici auxiliare, aux1
+si aux2 care sunt 2 matrici auxiliare, toate cele prezentate anterior fiind 
+declarate dinamic, si q, p, si z care o sa fie folosite la calcului lui c.
+Dupa aceea o sa apelam pe rand cele 7 functii declarate mai devreme astfel:
+apelam Mx, daca x este mai mare decat 2 inseamna ca matricile auxiliare au mai 
+mult de un element si trebuie sa facem inmultirea dintre ele cu strasen, altfel
+inmultim elementul din aux1 cu elementul din aux2 si punem in matricea de un 
+singur element maux de x. In cele din urma calculam c-ul cu ajutorul formulei 
+lui strassen.
+
+	Functia pregatirestrassen este asemanatoare functie inmultireclasica, aceas-
+ta pregatind matricea c pentru inmultirea care urmeaza.
